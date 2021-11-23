@@ -1,0 +1,3 @@
+amixer set PCM unmute
+amixer set PCM 100%
+amixer
