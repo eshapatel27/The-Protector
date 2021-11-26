@@ -1,7 +1,7 @@
 import RPi.GPIO as gpio
 import time
 
-def distance(measure-"cm"):
+def distance(measure"cm"):
   try:
     gpio.setmode(gpio.BOARD)
     gpio.setup(12, gpio.OUT)
