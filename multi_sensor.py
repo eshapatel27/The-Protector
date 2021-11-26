@@ -7,20 +7,20 @@ def distance(measure"cm"):
     gpio.setup(12, gpio.OUT)
     gpio.setup(16, gpio.IN)
     #input the pin location we're using#
+    #trigger is out, echo is in#
+    #we need to set all the ultrasound to have the same trigger pin so they can run at once#
     
     gpio.output(12, False)
     while gpio.input(16) == 0:
-      nosig = time.time()
+      StartTime = time.time()
     
     while gpio.input(16) == 1:
-      sig = time.time()
+      StopTime = time.time()
       
-    tl = sig - nosig
+    TimeTaken = StopTime - StartTime
     
     if measure == "cm":
-      distance = tl / 0.000058
-    elif measure == "in":
-      distance = tl / 0.000148
+      distance = TimeTaken / 0.000058
     else:
       print("Improper choice of measurement: in or cm")
       distance = None
@@ -34,5 +34,11 @@ def distance(measure"cm"):
     return distance
   
   if __name__ == "__main__":
-    print(distance, "cm")
+    try:
+      while True:
+        dist = distance()
+        print(dist, "cm")
+    except KeyboardInterrupt:
+      print("Measurement stopped by User")
+      gpio.cleanup()
   
