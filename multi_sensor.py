@@ -19,12 +19,9 @@ def distance(measure"cm"):
       
     TimeTaken = StopTime - StartTime
     
-    if measure == "cm":
-      distance = TimeTaken / 0.000058
-    else:
-      print("Improper choice of measurement: in or cm")
-      distance = None
-    
+    distance = TimeTaken / 0.000058
+    #this converts it to cm#
+
     gpio.cleanup()
     return distance
   
